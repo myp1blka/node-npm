@@ -1,20 +1,21 @@
 
 
-const fs = require('fs/promises');
-const os = require('os');
+const fs = require('fs');
+const moment = require('moment'); 
 
 const init = async () => {
-    //await fs.mkdir(`${__dirname}/abc2/`)
-    //console.log(__dirname);
 
-    console.log(os.cpus());
+    await fs.writeFile(`${moment().format('X')}.log`, `Погода в Києві`, function (err)    {
+        if (err) throw err;
+        console.log('File is created successfully.');
+      });
+
 
     console.log('it work');
 }
-'є'
+
 
 init();
-
 
 
 
