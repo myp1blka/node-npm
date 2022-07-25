@@ -7,12 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./app.js",
     "startn": "nodemon ./app.js"
-
   },
   "author": "MypJlblkA",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.27.2",
-    "moment": "^2.29.4"
+    "moment": "^2.29.4",
+    "weather-js": "^2.0.0"
   }
 }
