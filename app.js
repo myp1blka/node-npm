@@ -1,27 +1,45 @@
 const fs = require('fs');
 const moment = require('moment'); 
 const weather = require('weather-js');
+
+let addInfoToFile = "";
 const init = async () => {
 
-    let myWeather = weather.find({search: 'Kyev, UA', degreeType: 'C'}, function(err, result) {
-        if(err) console.log(err);
-        console.log(result);
-        console.log(' === ');
-        console.log(result[0].location.name); // тут работает
-      });
+weather.find({search: 'Kyev, UA', degreeType: 'C'}, function(err, result) {
+  if(err) console.log(err);
+  //console.log(result);
+  console.log(' ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  === ');
 
-      console.log("111111" + myWeather[0].data); // тут не работает
-       let addInfoToFile = `у`;
-    //    ${myWeather[0].location.name} , сьогодні 
-    //    ${myWeather[0].current.temperature} градусів
-    //    `;
+  addInfoToFile += `
+  у ${result[0].location.name} , сьогодні ${result[0].current.temperature} градусів
+  `;
+  console.log(addInfoToFile);
+
+  fs.writeFile(`${moment().format('X')}.log`, `${addInfoToFile}`, function (err){
+  if (err) throw err;
+  console.log('File is created successfully.');
+  });
+  
 
 
-    await fs.writeFile(`${moment().format('X')}.log`, `${addInfoToFile}`, function (err){
-        if (err) throw err;
-        console.log('File is created successfully.');
-      });
-    console.log('it work');
+});
+
+  
+
+
+async function getData() {
+  return await axios.get('https://jsonplaceholder.typicode.com/posts');
+}
+
+(async () => {
+  console.log(await getData())
+  console.log('await getData()')
+
+})
+
+
+
+
 }
 init();
 
