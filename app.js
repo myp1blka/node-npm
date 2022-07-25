@@ -4,43 +4,23 @@ const weather = require('weather-js');
 
 let addInfoToFile = "";
 const init = async () => {
+  weather.find({search: 'Kyev, UA', degreeType: 'C'}, function(err, result) {
+    if(err) console.log(err);
+    //console.log(result);
+    console.log(' ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  === ');
 
-weather.find({search: 'Kyev, UA', degreeType: 'C'}, function(err, result) {
-  if(err) console.log(err);
-  //console.log(result);
-  console.log(' ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  === ');
+    addInfoToFile += `
+    у ${result[0].location.name} , сьогодні ${result[0].current.temperature} градусів
+    `;
+    console.log(addInfoToFile);
 
-  addInfoToFile += `
-  у ${result[0].location.name} , сьогодні ${result[0].current.temperature} градусів
-  `;
-  console.log(addInfoToFile);
-
-  fs.writeFile(`${moment().format('X')}.log`, `${addInfoToFile}`, function (err){
-  if (err) throw err;
-  console.log('File is created successfully.');
+    fs.writeFile(`${moment().format('X')}.log`, `${addInfoToFile}`, function (err){
+    if (err) throw err;
+    console.log('File is created successfully.');
+    });
   });
-  
-
-
-});
-
-  
-
-
-async function getData() {
-  return await axios.get('https://jsonplaceholder.typicode.com/posts');
 }
 
-(async () => {
-  console.log(await getData())
-  console.log('await getData()')
-
-})
-
-
-
-
-}
 init();
 
 
