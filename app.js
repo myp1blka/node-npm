@@ -7,10 +7,10 @@ const init = async () => {
         if(err) console.log(err);
         console.log(result);
         console.log(' === ');
-        console.log(result[0].location.name);
+        console.log(result[0].location.name); // тут работает
       });
 
-      console.log("1111111111111" + myWeather[0].data);
+      console.log("111111" + myWeather[0].data); // тут не работает
        let addInfoToFile = `у`;
     //    ${myWeather[0].location.name} , сьогодні 
     //    ${myWeather[0].current.temperature} градусів
